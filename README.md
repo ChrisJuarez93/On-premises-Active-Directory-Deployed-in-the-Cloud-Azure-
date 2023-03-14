@@ -34,7 +34,8 @@ This tutorial outlines the implementation of on-premises Active Directory within
 <img src="https://i.imgur.com/WvDgSfO.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+For the first step I created the Domain Controller VM (Windows Server 2022) named “Dc-1". The virtual network (Vnet) will be created at this time. I then set the Domain Controller’s NIC Private IP address to be static. I created the Client VM (Windows 10) named “Client-1”. I used the same resource group and Vnet that were created before. Ensure that both VMs are in the same Vnet (checked the topology with Network Watcher). 
+
 </p>
 <br />
 
@@ -42,7 +43,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 <img src="https://i.imgur.com/9VuvG37.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Here I ensured connectivity between the client and the Domain Controller. I logged in to Client-1 with remote desktop and ping'd Dc-1's private ip adress using with ping -t 10.1.0.5. After I logged into Domain Controller on remote desktop and enabled ICMP v4 on local windows firewall.
 </p>
 <br />
 
@@ -50,7 +51,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 <img src="https://i.imgur.com/TSuqYOp.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Here I installed Active Directory. On Dc-1 I clicked on Server Manager, clicked Add Roles and Features, clicked Active Directory Domain Services, and then Add Features. To finish installing Active Directory I added a new domain name "mydomain.com". Active Directory was successfully installed.
 </p>
 <br />
 
@@ -58,6 +59,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 <img src="https://i.imgur.com/uqDaVZ7.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Here I setup Remote Desktop for non-administrative users on Client 1. I logged into Client-1 as mydomain.com\chris_admin and opened system properties. I clicked Remote Desktop and allowed "domain users" access to remote desktop. Now I can log in Client-1 as a non-administrative user now. 
+
 </p>
 <br />
